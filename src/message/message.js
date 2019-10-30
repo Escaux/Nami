@@ -51,9 +51,16 @@ Message.prototype.marshall = function () {
             }
         }
     }
-    for (key in this.variables) {
-        output = output + 'Variable: ' + key + '=' + this.variables[key] + this.EOL;
+    if (Array.isArray(this.variables)) {
+        for (key in this.variables) {
+            output = output + 'Variable: ' + this.variables[key] + this.EOL;
+        }
+    } else {
+        for (key in this.variables) {
+            output = output + 'Variable: ' + key + '=' + this.variables[key] + this.EOL;
+        }
     }
+    
     output = output + this.EOL;
     return output;
 };
