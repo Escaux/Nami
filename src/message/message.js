@@ -57,7 +57,14 @@ Message.prototype.marshall = function () {
         }
     } else {
         for (key in this.variables) {
-            output = output + 'Variable: ' + key + '=' + this.variables[key] + this.EOL;
+            if (Array.isArray(this.variables[key])) {
+                for (let i in this.variables[key]) {
+                    output = output + 'Variable: ' + key + '=' + this.variables[key][i] + this.EOL;
+                }
+            } else {
+                output = output + 'Variable: ' + key + '=' + this.variables[key] + this.EOL;
+            }
+            
         }
     }
     
